@@ -28,7 +28,8 @@ userSchema.virtual('friendAmount').get(function(){
     return this.friends.length;
 })
 
+// Initializing model
 const User = model('user', userSchema);
 
-// Have to figure out issue with deconstructing
-module.exports = {User};
+// Have to figure out issue with deconstructing--Figured out with tutor
+module.exports = User;
