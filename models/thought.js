@@ -28,6 +28,10 @@ const thoughtSchema = new Schema(
     }
 );
 
+// Added after re-reading README
+thoughtSchema.virtual('reactionCount').get(function(){
+    return this.reactions.length;
+})
 
 // Initializing model
 const Thought = model('thought', thoughtSchema);
