@@ -32,16 +32,46 @@ module.exports = {
                 );
             })
             // Need to ask TA or tutor about the arg
-            .then((user) =>
-                !user
-                    ? res.status(404).json({
-                        message: 'Unable to find a user with a matching Id',
-                    })
-                    : res.json('New thought added successfully')
-            )
-            .catch((err) => {
-                console.log(err);
-                res.status(500).json(err);
-            });
+            // .then(user) => !user
+            .then((thought) => res.json(thought))
+            .catch((err) => res.status(500).json(err));
+          },
+
+    updateAThought(req, res) {
+        Thought.findOneAndUpdate(
+            {_id: req.params.thoughtId},
+            { $set: req.body},
+            {runValidators: true, new: true}
+        )
+        .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: 'Unable to find a thought with a matching Id' })
+          : res.json(thought)
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
     },
+
+    deleteAThought(req, res) {
+        Thought.findOneAndRemove({ _id: req.params.thoughtId })
+          .then((thought) =>
+            !thought
+              ? res.status(404).json({ message: 'Unable to find a thought with a matching Id' })
+              : User.findOneAndUpdate(
+                  { thoughts: req.params.thoughtId },
+                  { $pull: { thoughts: req.params.thoughtId } },
+                  { new: true }
+                )
+          )
+          .then((thought) =>
+            !thought
+              ? res
+                  .status(404)
+                  .json({ message: 'Thought deleted successfully' })
+              : res.json(thought)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
 }
