@@ -68,7 +68,6 @@ module.exports = {
             .then((thought) =>
                 !thought
                     ? res
-                        .status(404)
                         .json({ message: 'Thought deleted successfully' })
                     : res.json(thought)
             )
@@ -80,7 +79,7 @@ module.exports = {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $addToSet: { reactions: req.body } },
-            { runValidators: true, new: true }
+            { new: true }
         )
             .then((thought) =>
                 !thought
@@ -93,7 +92,7 @@ module.exports = {
     deleteAReaction(req, res) {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
-            { $pull: { reactions: { reactionId: req.params.reactionId } } },
+            { $pull: { reactions: { _id: req.params.reactionId } } },
             { runValidators: true, new: true }
         )
             .then((thought) =>

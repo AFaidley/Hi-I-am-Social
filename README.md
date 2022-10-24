@@ -27,7 +27,7 @@ Below is a link to my demo video:
 ## Installation
 The user would need to install Node, the following link describes how to do so: https://nodejs.dev/en/learn/how-to-install-nodejs <br> After installing Node they will then have to install the required packages and they can do so by using the command "npm i" in the terminal.
 ## Usage
-To use my application the user will have to open the terminal and type in `node index.js` and press enter. Once they have done so they will see a message in the terminal that says `API server running on port 3001!`. At this point the user can use insomnia, postman or any other site of their choice to test the backend routes. Thank you for using my app!
+To use my application the user will have to open the terminal and type in `node index.js` and press enter. Once they have done so they will see a message in the terminal that says `API server running on port 3001!`. At this point the user can use insomnia, postman or any other site of their choice to test the backend routes. If the user has MongoDB Compass they will also be able to see and interact with the newly created database in there. Thank you for using my app!
 ## Contribution
 - Denver University Staff
 - Tutor
