@@ -6,7 +6,7 @@ const { getThought,
         updateAThought,
         deleteAThought,
         addAReaction,
-        removeAReaction } = require('../../controllers/thoughtController');
+        deleteAReaction } = require('../../controllers/thoughtController');
 
 // In order the api routes would look like:
 // api/thought
@@ -16,6 +16,6 @@ const { getThought,
 router.route('/').get(getThought).post(createAThought);
 router.route('/:thoughtId').get(getOneThought).put(updateAThought).delete(deleteAThought);
 router.route('/:thoughtId/reactions').post(addAReaction);
-router.route('/:thoughtId/reactions/:reactionId').delete(removeAReaction);
+router.route('/:thoughtId/reactions/:reactionId').delete(deleteAReaction);
 
 module.exports = router;
